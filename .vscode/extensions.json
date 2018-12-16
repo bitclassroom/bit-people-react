@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "msjsdiag.debugger-for-chrome",
+        "dbaeumer.vscode-eslint",
+        "PKief.material-icon-theme",
+        "Orta.vscode-jest",
+        "xabikos.javascriptsnippets"
+    ]
+}
