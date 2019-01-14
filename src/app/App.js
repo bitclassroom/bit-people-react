@@ -1,7 +1,8 @@
 import React from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
-import AboutPage from 'about/AboutPage'
+
 import Home from 'Home'
+import AboutPage from 'about/AboutPage'
 
 const App = () => (
     <HashRouter>

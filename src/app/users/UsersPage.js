@@ -32,25 +32,22 @@ class UsersPage extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        // If view is changed don't update the state
-        if (nextProps.isGridMode !== this.props.isGridMode) {
-            return
+    componentDidUpdate(prevProps) {
+        const { users } = this.props
+        const prevUsers = prevProps.users
+
+        const usersChanged = !_.isEqual(users, prevUsers)
+
+        if (usersChanged) {
+            const stats = this.calculateStats(users)
+
+            this.setState({
+                allUsers: users,
+                filteredUsers: users,
+                isLoading: _.isEmpty(users),
+                stats
+            })
         }
-
-        const { users } = nextProps
-        const stats = this.calculateStats(users)
-
-        this.setState({
-            allUsers: users,
-            filteredUsers: users,
-            isLoading: _.isEmpty(users),
-            stats
-        })
-
-        // New users received via props if we want to save search state
-        // const { searchText } = this.state
-        // this.searchUsers(searchText, users)
     }
 
     calculateStats = (users = []) => {

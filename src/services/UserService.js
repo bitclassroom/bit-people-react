@@ -1,41 +1,38 @@
-import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
-import { BASE_URL } from 'shared/constants'
+import { storage } from '../shared/storage'
+import { API } from '../shared/api'
 
 import User from 'models/User'
 
-const KEYS = {
+const USER_KEYS = {
     lastUpdate: 'last_update',
-    latestUsers: 'last_update',
+    latestUsers: 'latest_users'
 }
 
 class UserService {
-    fetchUsers() {
-        return axios
-            .get(`${BASE_URL}/?results=15`)
-            .then(response => response.data)
-            .then(data => data.results)
-            .then(usersData => {
-                this.saveUsers(usersData)
-                return usersData.map(user => new User(user))
-            })
+    async fetchUsers() {
+        const { data } = await API.get()
+        const usersData = data.results
+
+        this.saveUsers(usersData)
+
+        return usersData.map(user => new User(user))
     }
 
     saveUsers(usersData) {
-        localStorage.setItem(KEYS.latestUsers, JSON.stringify(usersData))
-        localStorage.setItem('last_update', new Date())
+        storage.save(USER_KEYS.latestUsers, usersData)
+        storage.save(USER_KEYS.lastUpdate, new Date().toISOString())
     }
 
     loadSavedUsers() {
-        const usersJson = localStorage.getItem('latest_users') || '[]'
-        const usersData = JSON.parse(usersJson)
+        const usersData = storage.load(USER_KEYS.latestUsers) || []
         return usersData.map(user => new User(user))
     }
 
     lastUpdated() {
-        const date = localStorage.getItem('last_update') || new Date()
-        return moment(date).fromNow()
+        const date = storage.load(USER_KEYS.lastUpdate) || new Date().toISOString()
+        return dayjs().to(dayjs(date))
     }
 }
 

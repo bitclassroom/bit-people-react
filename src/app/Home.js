@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
-import './App.css'
+import { userService } from 'userService'
 
 import Header from 'partials/Header'
 import Footer from 'partials/Footer'
 import ErrorBoundary from 'partials/ErrorBoundary'
 import UsersPage from 'users/UsersPage'
 
-import { userService } from 'UserService'
+import './App.css'
 
 class Home extends Component {
     constructor(props) {
         super(props)
-        this.state = this.initState()
-    }
-
-    initState() {
-        return {
+        this.state = {
             gridMode: false,
             lastUpdate: userService.lastUpdated()
         }
@@ -41,15 +37,19 @@ class Home extends Component {
     onViewModeChange = event => {
         event.preventDefault()
 
-        const gridMode = !this.state.gridMode
-        this.setState({ gridMode })
+        this.setState(prevState => {
+            const gridMode = !prevState.gridMode
+            return { gridMode }
+        })
     }
 
     onRefreshHandler = event => {
         event.preventDefault()
+
         // Reset current users
-        this.setState({ users: [] })
-        this.loadUsers(true)
+        this.setState({ users: [] }, () => {
+            this.loadUsers(true)
+        })
     }
 
     render() {
@@ -67,15 +67,10 @@ class Home extends Component {
                 />
                 <main>
                     <ErrorBoundary>
-                        <UsersPage
-                            key="UserPage"
-                            users={users}
-                            isGridMode={gridMode} />
+                        <UsersPage key="UserPage" users={users} isGridMode={gridMode} />
                     </ErrorBoundary>
                 </main>
-                <Footer
-                    key="Footer"
-                    lastUpdate={lastUpdate} />
+                <Footer key="Footer" lastUpdate={lastUpdate} />
             </>
         )
     }

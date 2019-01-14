@@ -1,18 +1,25 @@
-import { hideEmail } from 'utils'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import _ from 'lodash'
+
+import { hideEmail } from 'utils'
 
 export default class User {
     constructor({ name, dob, email, picture, gender }) {
         this.name = name
         this.sex = gender
-        this.dob = moment(dob).format('DD.MM.YYYY')
+        this.dateOfBirth = dob
         this.fullEmail = email
         this.picture = picture
     }
 
     isFemale() {
         return this.sex === 'female'
+    }
+
+    get dob() {
+        return dayjs(this.createdDate)
+            .format('DD.MM.YYYY.')
+            .toLowerCase()
     }
 
     get firstName() {

@@ -1,7 +1,15 @@
 {
     "extends": [
-        "react-app"
+        "react-app",
+        "plugin:jest/recommended"
     ],
+    "plugins": [
+        "import",
+        "jest"
+    ],
+    "env": {
+        "jest/globals": true
+    },
     "rules": {
         "semi": [
             "error",
@@ -16,7 +24,24 @@
         ],
         "indent": [
             "error",
-            4
-        ]
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "space-before-function-paren": "off",
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true
+            }
+        ],
+        "operator-linebreak": [
+            "error",
+            "after"
+        ],
+        "padded-blocks": "off"
     }
 }
