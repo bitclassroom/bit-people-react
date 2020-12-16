@@ -32,16 +32,18 @@ const Header = props => {
     }
 
     return (
-        <nav>
-            <div className="container">
-                <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo">
-                        {title}
-                    </Link>
-                    {renderRightMenu()}
+        <header>
+            <nav>
+                <div className="container">
+                    <div className="nav-wrapper">
+                        <Link to="/" className="brand-logo">
+                            {title}
+                        </Link>
+                        {renderRightMenu()}
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
     )
 }
 

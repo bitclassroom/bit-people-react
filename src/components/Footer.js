@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 
-const Footer = ({ lastUpdate }) => {
+const Footer = ({ lastUpdate = '' }) => {
     const updateText = _.isEmpty(lastUpdate) ? (
         ''
     ) : (
