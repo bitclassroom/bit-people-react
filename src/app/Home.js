@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
-import Header from './partials/Header'
-import Footer from './partials/Footer'
-import ErrorBoundary from './partials/ErrorBoundary'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import ErrorBoundary from '../components/ErrorBoundary'
 import UsersPage from './users/UsersPage'
 
-import './App.css'
 import { userService } from 'services/userService'
 
 class Home extends Component {

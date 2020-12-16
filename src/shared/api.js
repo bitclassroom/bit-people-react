@@ -1,5 +1,6 @@
-import { BASE_API_ENDPOINT } from './constants'
 import Axios from 'axios'
+
+import { BASE_API_ENDPOINT } from './constants'
 
 export const API = Axios.create({
     baseURL: BASE_API_ENDPOINT,

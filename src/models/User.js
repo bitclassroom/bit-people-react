@@ -3,15 +3,14 @@ import _ from 'lodash'
 
 import { hideEmail } from 'shared/utils'
 
-// import { hideEmail } from 'services/utils'
-
 export default class User {
-    constructor({ name, dob, email, picture, gender }) {
+    constructor({ name, dob, email, picture, gender, ...data }) {
         this.name = name
         this.sex = gender
         this.dateOfBirth = dob
         this.fullEmail = email
         this.picture = picture
+        this.createdDate = data.createdDate
     }
 
     isFemale() {

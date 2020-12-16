@@ -5,9 +5,9 @@ import _ from 'lodash'
 
 import User from 'models/User'
 
-import Loader from './../partials/Loader/Loader'
-import NoResults from './../partials/NoResults/NoResults'
-import SearchBar from './../partials/SearchBar'
+import Loader from 'components/Loader/Loader'
+import NoResults from 'components/NoResults/NoResults'
+import SearchBar from 'components/SearchBar'
 
 import UsersList from './UsersList'
 import UserStats from './UserStats'

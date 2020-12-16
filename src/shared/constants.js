@@ -1,1 +1,1 @@
-export const BASE_API_ENDPOINT = atob('aHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaQ==')
+export const BASE_API_ENDPOINT = atob(process.env.REACT_APP_BASE_API_ENDPOINT)

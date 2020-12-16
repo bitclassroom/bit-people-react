@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
-import { storage } from '../shared/storage'
-import { API } from '../shared/api'
+import { storage } from 'shared/storage'
+import { API } from 'shared/api'
 
 import User from 'models/User'
 
@@ -12,6 +12,7 @@ const USER_KEYS = {
 
 class UserService {
     async fetchUsers() {
+        //@ts-ignore
         const { data } = await API.get()
         const usersData = data.results
 
