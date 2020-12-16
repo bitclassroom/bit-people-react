@@ -9,5 +9,8 @@
     "workbench.editor.showTabs": false,
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "One Dark Pro Vivid",
-    "explorer.openEditors.visible": 0
+    "explorer.openEditors.visible": 0,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
-import { userService } from 'userService'
-
-import Header from 'partials/Header'
-import Footer from 'partials/Footer'
-import ErrorBoundary from 'partials/ErrorBoundary'
-import UsersPage from 'users/UsersPage'
+import Header from './partials/Header'
+import Footer from './partials/Footer'
+import ErrorBoundary from './partials/ErrorBoundary'
+import UsersPage from './users/UsersPage'
 
 import './App.css'
+import { userService } from 'services/userService'
 
 class Home extends Component {
     constructor(props) {

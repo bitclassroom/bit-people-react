@@ -1,7 +1,9 @@
 import dayjs from 'dayjs'
 import _ from 'lodash'
 
-import { hideEmail } from 'utils'
+import { hideEmail } from 'shared/utils'
+
+// import { hideEmail } from 'services/utils'
 
 export default class User {
     constructor({ name, dob, email, picture, gender }) {
