@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import ErrorBoundary from '../components/ErrorBoundary'
+import ErrorBoundary from 'components/ErrorBoundary'
 import UsersPage from './users/UsersPage'
 
 import { userService } from 'services/userService'
@@ -12,7 +10,6 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            gridMode: false,
             lastUpdate: userService.lastUpdated()
         }
     }
@@ -32,15 +29,6 @@ class Home extends Component {
         this.setState({ users, lastUpdate })
     }
 
-    onViewModeChange = event => {
-        event.preventDefault()
-
-        this.setState(prevState => {
-            const gridMode = !prevState.gridMode
-            return { gridMode }
-        })
-    }
-
     onRefreshHandler = event => {
         event.preventDefault()
 
@@ -51,25 +39,12 @@ class Home extends Component {
     }
 
     render() {
-        const { onViewModeChange, onRefreshHandler } = this
-        const { gridMode, users, lastUpdate = '' } = this.state
+        const { users, lastUpdate = '' } = this.state
 
         return (
-            <>
-                <Header
-                    key="Header"
-                    title="BIT People"
-                    changeViewMode={onViewModeChange}
-                    onRefresh={onRefreshHandler}
-                    gridMode={gridMode}
-                />
-                <main>
-                    <ErrorBoundary>
-                        <UsersPage key="UserPage" users={users} isGridMode={gridMode} />
-                    </ErrorBoundary>
-                </main>
-                <Footer key="Footer" lastUpdate={lastUpdate} />
-            </>
+            <ErrorBoundary>
+                <UsersPage key="UserPage" users={users} />
+            </ErrorBoundary>
         )
     }
 }

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import LayoutContext from 'app/LayoutContext'
+
 const Header = props => {
-    const { title, gridMode, viewModeOff, changeViewMode, onRefresh } = props
+    const { onViewModeChange } = useContext(LayoutContext)
+    const { title, gridMode, viewModeOff, onRefresh } = props
 
     const viewModeIcon = gridMode ? 'view_list' : 'view_module'
 
@@ -22,7 +25,7 @@ const Header = props => {
                         <i className="material-icons">refresh</i>
                     </a>
                 </li>
-                <li onClick={changeViewMode}>
+                <li onClick={onViewModeChange}>
                     <a href="#!">
                         <i className="material-icons">{viewModeIcon}</i>
                     </a>

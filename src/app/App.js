@@ -5,15 +5,15 @@ import Footer from 'components/Footer'
 import Header from 'components/Header'
 
 import Main from './main/Main'
-
-// import Home from 'Home'
-// import AboutPage from 'about/AboutPage'
+import LayoutProvider from './LayoutProvider'
 
 const App = () => (
     <HashRouter>
-        <Header />
-        <Main />
-        <Footer />
+        <LayoutProvider>
+            <Header />
+            <Main />
+            <Footer />
+        </LayoutProvider>
     </HashRouter>
 )
 

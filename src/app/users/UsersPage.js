@@ -11,8 +11,11 @@ import SearchBar from 'components/SearchBar'
 
 import UsersList from './UsersList'
 import UserStats from './UserStats'
+import LayoutContext from 'app/LayoutContext'
 
 class UsersPage extends Component {
+    // static contextType = LayoutContext
+
     constructor(props) {
         super(props)
         this.state = this.initState()
@@ -74,13 +77,13 @@ class UsersPage extends Component {
     }
 
     renderUsers = () => {
-        const { isGridMode } = this.props
+        // const { isGridMode } = this.context
         const { filteredUsers } = this.state
 
         return _.isEmpty(filteredUsers) ? (
             <NoResults />
         ) : (
-            <UsersList isGridMode={isGridMode} users={filteredUsers} />
+            <UsersList /*isGridMode={isGridMode}*/ users={filteredUsers} />
         )
     }
 
@@ -92,11 +95,11 @@ class UsersPage extends Component {
         const { searchUsers, renderUsers } = this
 
         return (
-            <div className="container">
+            <>
                 <SearchBar onSearch={searchUsers} />
                 <UserStats stats={this.state.stats} />
                 {renderUsers()}
-            </div>
+            </>
         )
     }
 }
